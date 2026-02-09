@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ishaka Sheriff - Interactive CV Dashboard</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    @keyframes fillBar {
+      from { width: 0; }
+      to { width: var(--skill-level); }
+    }
+    .skill-bar { animation: fillBar 1.5s ease-out forwards; }
+    body { font-size: 14px; color: #1f2937; }
+    p, li, span, a { color: inherit; }
+    .summary-text { font-size: 0.75rem; line-height: 1.5; color: #374151; }
+    .skill-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.4;
+      margin: 2px;
+    }
+    .badge-blue { background-color: #2563eb; }
+    .badge-purple { background-color: #7c3aed; }
+    .badge-green { background-color: #059669; }
+    .badge-teal { background-color: #0d9488; }
+    .badge-orange { background-color: #ea580c; }
+    .date-pill {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      background-color: #dbeafe;
+      color: #1d4ed8;
+      padding: 1px 8px;
+      border-radius: 9999px;
+      white-space: nowrap;
+    }
+    .section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1d4ed8;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 4px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+    }
+    .section-title i { margin-right: 6px; font-size: 0.875rem; }
+    .exp-title { font-weight: 700; color: #2563eb; font-size: 0.75rem; }
+    .exp-org { font-size: 0.75rem; font-weight: 500; color: #1f2937; }
+    .exp-list { padding-left: 1rem; margin-top: 4px; }
+    .exp-list li { font-size: 0.72rem; line-height: 1.45; color: #374151; margin-bottom: 2px; }
+    .check-item { display: flex; align-items: flex-start; margin-bottom: 2px; }
+    .check-item i { color: #3b82f6; margin-top: 3px; margin-right: 5px; font-size: 0.65rem; flex-shrink: 0; }
+    .check-item span { font-size: 0.75rem; color: #374151; }
+    .lang-bar-bg { width: 100%; background-color: #e5e7eb; border-radius: 9999px; height: 6px; }
+    .lang-bar-fill { height: 6px; border-radius: 9999px; background-color: #2563eb; }
+    .edu-degree { font-weight: 700; color: #2563eb; font-size: 0.75rem; }
+    .edu-school { font-size: 0.75rem; color: #374151; }
+    .edu-date { font-size: 0.7rem; color: #6b7280; }
+    .sub-heading { font-weight: 700; color: #2563eb; font-size: 0.75rem; margin-bottom: 4px; display: flex; align-items: center; }
+    .sub-heading i { margin-right: 5px; font-size: 0.7rem; }
+    .detail-label { font-size: 0.7rem; color: #6b7280; font-weight: 600; }
+    .detail-value { font-size: 0.75rem; color: #374151; }
+
+    @media print {
+      .bg-blue-700 { background-color: #1d4ed8 !important; print-color-adjust: exact; }
+      .bg-blue-800 { background-color: #1e40af !important; print-color-adjust: exact; }
+      .text-white { color: white !important; print-color-adjust: exact; }
+      .badge-blue, .badge-purple, .badge-green, .badge-teal, .badge-orange { print-color-adjust: exact; }
+      .shadow-lg, .shadow-md, .shadow-sm { box-shadow: none !important; }
+      @page { margin: 0.5cm; }
+      .page-break { page-break-before: always; }
+    }
+    @media (max-width: 768px) {
+      .resp-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto" style="max-width:210mm; padding:8px;">
+
+    <!-- Header -->
+    <div class="bg-blue-700 text-white shadow-lg" style="padding:14px 16px; border-radius:8px 8px 0 0;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <div>
+          <h1 style="font-size:1.5rem; font-weight:700; color:#fff; margin:0;">Ishaka Sheriff</h1>
+          <p style="color:#bfdbfe; margin-top:4px; font-size:0.875rem;">ICT Officer | DevOps Engineer | ICT4D Consultant | Systems Administrator</p>
+        </div>
+        <div style="text-align:right; font-size:0.8rem;">
+          <p style="color:#bfdbfe; display:flex; align-items:center; justify-content:flex-end; gap:4px; margin:2px 0;">
+            <i class="fas fa-map-marker-alt" style="font-size:0.7rem;"></i> 17 Main Motor Road, Waterloo, Freetown
+          </p>
+          <p style="display:flex; align-items:center; justify-content:flex-end; gap:4px; margin:2px 0;">
+            <i class="fas fa-envelope" style="font-size:0.7rem; color:#bfdbfe;"></i>
+            <a href="mailto:sheriffishaka7@gmail.com" style="color:#bfdbfe; text-decoration:none;">sheriffishaka7@gmail.com</a>
+          </p>
+          <p style="display:flex; align-items:center; justify-content:flex-end; gap:4px; margin:2px 0;">
+            <i class="fas fa-phone" style="font-size:0.7rem; color:#bfdbfe;"></i>
+            <a href="tel:+23276114224" style="color:#bfdbfe; text-decoration:none;">+232 76 114224 / +232 99 114224</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="resp-grid" style="display:grid; grid-template-columns:1fr 2fr; gap:8px; margin-top:8px;">
+
+      <!-- LEFT COLUMN -->
+      <div>
+
+        <!-- Professional Summary -->
+        <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition" style="padding:12px; margin-bottom:8px;">
+          <h2 class="section-title"><i class="fas fa-user-tie"></i> Professional Summary</h2>
+          <p class="summary-text">
+            A dedicated ICT professional with over three years of experience in DevOps Engineering, Systems Administration, Database Management, Network Administration, and ICT4D solutions. Proven track record of deploying and maintaining ICT infrastructure for health programs, including the National Malaria Control Programme and Catholic Relief Services. Skilled in application development, digital data collection, capacity building, and technical support delivery. Committed to leveraging innovative technology to drive operational efficiency and empower teams across development programs.
+          </p>
+        </div>
+
+        <!-- Education -->
+        <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition" style="padding:12px; margin-bottom:8px;">
+          <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+          <div style="display:flex; align-items:flex-start;">
+            <i class="fas fa-university" style="color:#2563eb; margin-right:6px; margin-top:2px; font-size:0.7rem;"></i>
+            <div>
+              <p class="edu-degree">B.Sc. (Hons) Information Technology</p>
+              <p class="edu-school">Institute of Public Administration and Management (IPAM), University of Sierra Leone (USL) </p>
+              <p class="edu-date">March 2018 — March 2023</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Personal Details -->
+        <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition" style="padding:12px; margin-bottom:8px;">
+          <h2 class="section-title"><i class="fas fa-id-card"></i> Personal Details</h2>
+          <div style="margin-bottom:4px;">
+            <span class="detail-label">Nationality:</span>
+            <span class="detail-value"> Sierra Leonean</span>
+          </div>
+          <div style="margin-bottom:4px;">
+            <span class="detail-label">Place of Birth:</span>
+            <span class="detail-value"> Sierra Leone</span>
+          </div>
+          <div>
+            <span class="detail-label">Driving License:</span>
+            <span class="detail-value"> KRDL0603102</span>
+          </div>
+        </div>
+
+        <!-- Core Strengths -->
+        <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition" style="padding:12px; margin-bottom:8px;">
+          <h2 class="section-title"><i class="fas fa-hand-holding-heart"></i> Core Strengths</h2>
+          <div class="check-item"><i class="fas fa-check-circle"></i><span>Critical Thinking & Problem Solving</span></div>
+          <div class="check-item"><i class="fas fa-check-circle"></i><span>Effective Time Management</span></div>
+          <div class="check-item"><i class="fas fa-check-circle"></i><span>Strong Communication Skills</span></div>
+          <div class="check-item"><i class="fas fa-check-circle"></i><span>Customer Service Excellence</span></div>
+          <div class="check-item"><i class="fas fa-check-circle"></i><span>Ability to Work Under Pressure</span></div>
+          <div class="check-item"><i class="fas fa-check-circle"></i><span>Proven Leadership & Organization</span></div>
+        </div>
+
+        <!-- Languages -->
+        <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition" style="padding:12px;">
+          <h2 class="section-title"><i class="fas fa-language"></i> Languages</h2>
+          <div style="margin-bottom:8px;">
+            <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:3px;">
+              <span style="font-weight:600; color:#1f2937;">English</span>
+              <span style="color:#6b7280;">Fluent</span>
+            </div>
+            <div class="lang-bar-bg">
+              <div class="lang-bar-fill skill-bar" style="--skill-level:95%; width:95%;"></div>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:3px;">
+              <span style="font-weight:600; color:#1f2937;">Kerio</span>
+              <span style="color:#6b7280;">Native</span>
+            </div>
+            <div class="lang-bar-bg">
+              <div class="lang-bar-fill skill-bar" style="--skill-level:100%; width:100%;"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div>
+
+        <!-- Technical Skills -->
+        <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition" style="padding:12px; margin-bottom:8px;">
+          <h2 class="section-title"><i class="fas fa-laptop-code"></i> Technical Skills</h2>
+
+          <div style="margin-bottom:8px;">
+            <h3 class="sub-heading"><i class="fas fa-server"></i> Systems & Network Administration</h3>
+            <div style="display:flex; flex-wrap:wrap;">
+              <span class="skill-badge badge-blue">Systems Administration (Proficient)</span>
+              <span class="skill-badge badge-blue">Network Administration (Proficient)</span>
+              <span class="skill-badge badge-blue">Server Management (Proficient)</span>
+              <span class="skill-badge badge-blue">Hardware Installation & Configuration</span>
+              <span class="skill-badge badge-blue">Performance Monitoring & Troubleshooting</span>
+              <span class="skill-badge badge-blue">Disaster Recovery & Backups</span>
+              <span class="skill-badge badge-blue">System Upgrades & Migrations</span>
+              <span class="skill-badge badge-blue">Telecommunications</span>
+            </div>
+          </div>
+
+          <div style="margin-bottom:8px;">
+            <h3 class="sub-heading"><i class="fas fa-code"></i> Software Development & Programming</h3>
+            <div style="display:flex; flex-wrap:wrap;">
+              <span class="skill-badge badge-purple">Application Development</span>
+              <span class="skill-badge badge-purple">Website Design & Management</span>
+              <span class="skill-badge badge-purple">Database Design & Management</span>
+              <span class="skill-badge badge-purple">Programming</span>
+              <span class="skill-badge badge-purple">CommCare App Building</span>
+            </div>
+          </div>
+
+          <div style="margin-bottom:8px;">
+            <h3 class="sub-heading"><i class="fas fa-mobile-alt"></i> Data Collection & ICT4D Tools</h3>
+            <div style="display:flex; flex-wrap:wrap;">
+              <span class="skill-badge badge-green">CommCare (Proficient)</span>
+              <span class="skill-badge badge-green">Online Survey Forms</span>
+              <span class="skill-badge badge-green">Android Device Configuration</span>
+              <span class="skill-badge badge-green">Data Collection & Analysis</span>
+              <span class="skill-badge badge-green">ICT4D Equipment Management</span>
+              <span class="skill-badge badge-green">Digital Training Facilitation</span>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="sub-heading"><i class="fas fa-tools"></i> Other Technical Skills</h3>
+            <div style="display:flex; flex-wrap:wrap;">
+              <span class="skill-badge badge-teal">3D Printing & Assembly</span>
+              <span class="skill-badge badge-teal">Video Editing</span>
+              <span class="skill-badge badge-teal">Software Installation & Configuration</span>
+              <span class="skill-badge badge-teal">Device Provisioning & Inventory</span>
+              <span class="skill-badge badge-teal">Statistical Reporting</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience - First 2 -->
+        <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition" style="padding:12px;">
+          <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional Experience</h2>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+
+            <!-- ICT Officer - NMCP -->
+            <div>
+              <div style="border-left:2px solid #3b82f6; padding-left:8px; padding-top:4px; padding-bottom:4px;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                  <span class="exp-title">ICT Officer</span>
+                  <span class="date-pill">2025 - Present</span>
+                </div>
+                <p class="exp-org">National Malaria Control Programme - Sierra Leone</p>
+                <ul class="exp-list list-disc">
+                  <li>Deployed, configured, and maintained ICT systems including networks and telecommunications, ensuring optimal performance.</li>
+                  <li>Developed applications and online survey forms for research and operational purposes on request.</li>
+                  <li>Conducted disaster recovery and regular backup drills to minimize data loss and ensure business continuity.</li>
+                  <li>Coordinated with DHMT, SM&E, and thematic areas to ensure efficient and scalable workflows across the programme.</li>
+                  <li>Led training on device management, configuration, and data entry dynamics to empower staff.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- ICT Consultant - ICF -->
+            <div>
+              <div style="border-left:2px solid #3b82f6; padding-left:8px; padding-top:4px; padding-bottom:4px;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                  <span class="exp-title">ICT Consultant</span>
+                  <span class="date-pill">2024 - 2025</span>
+                </div>
+                <p class="exp-org">Informatics Consultancy Firm - Sierra Leone</p>
+                <ul class="exp-list list-disc">
+                  <li>Developed websites for organizational needs and online survey forms for research purposes.</li>
+                  <li>Monitored operations and provided the team with ongoing technical support.</li>
+                  <li>Developed custom applications as needed upon request to support programme delivery.</li>
+                  <li>Provided bi-weekly reports on assigned tasks, ensuring transparency and accountability.</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Page Break -->
+    <div class="page-break"></div>
+
+    <!-- Experience Continued - Full Width -->
+    <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition" style="padding:12px; margin-top:8px;">
+      <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional Experience (continued)</h2>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+
+        <!-- ICT4D Consultant - CRS Freetown -->
+        <div>
+          <div style="border-left:2px solid #3b82f6; padding-left:8px; padding-top:4px; padding-bottom:4px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+              <span class="exp-title">ICT4D Consultant – ITN Mass Campaign</span>
+              <span class="date-pill">Aug 2023 - Mar 2024</span>
+            </div>
+            <p class="exp-org">Catholic Relief Services (CRS) - Freetown</p>
+            <ul class="exp-list list-disc">
+              <li>Provided training on device management, device configuration, and data entry dynamics, empowering field workers to solve problems independently.</li>
+              <li>Delivered real-time technical support on Android devices and apps during trainings and upon request.</li>
+              <li>Managed device provisioning, distribution, and inventory of ICT4D equipment, ensuring smooth campaign operations.</li>
+              <li>Provided bi-weekly activity reports, enhancing workflow effectiveness and efficiency.</li>
+              <li>Developed and delivered ICT training programs to empower local communities and enhance digital skills.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ICT Officer - CRS Kabala -->
+        <div>
+          <div style="border-left:2px solid #3b82f6; padding-left:8px; padding-top:4px; padding-bottom:4px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+              <span class="exp-title">ICT Officer – Kabala Branch</span>
+              <span class="date-pill">Feb 2023 - Aug 2023</span>
+            </div>
+            <p class="exp-org">Catholic Relief Services (CRS) - Sierra Leone</p>
+            <ul class="exp-list list-disc">
+              <li>Deployed, configured, and maintained ICT systems including networks and telecommunications, troubleshooting issues for optimal performance.</li>
+              <li>Planned and executed technology upgrades and migrations to enhance productivity and efficiency.</li>
+              <li>Configured and maintained applications and user devices, ensuring proper access to agency data while protecting organizational assets.</li>
+              <li>Maintained inventory of ICT equipment, hardware, and software; provided input to ICT budgets.</li>
+              <li>Supported capacity building initiatives for staff and partners, ensuring consistent adoption of ICT applications.</li>
+              <li>Coordinated supplier relationships to facilitate delivery of ICT services meeting CRS requirements.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Core Competencies -->
+    <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition" style="padding:12px; margin-top:8px;">
+      <h2 class="section-title"><i class="fas fa-star"></i> Core Competencies</h2>
+      <div style="display:flex; flex-wrap:wrap;">
+        <span class="skill-badge badge-blue">ICT Systems Deployment</span>
+        <span class="skill-badge badge-blue">Network & Server Administration</span>
+        <span class="skill-badge badge-blue">Application Development</span>
+        <span class="skill-badge badge-blue">ICT4D Solutions</span>
+        <span class="skill-badge badge-blue">Digital Data Collection</span>
+        <span class="skill-badge badge-blue">Capacity Building & Training</span>
+        <span class="skill-badge badge-blue">Disaster Recovery</span>
+        <span class="skill-badge badge-blue">Technical Support</span>
+        <span class="skill-badge badge-blue">Database Management</span>
+        <span class="skill-badge badge-blue">Website Development</span>
+        <span class="skill-badge badge-blue">Device Provisioning & Inventory</span>
+        <span class="skill-badge badge-blue">Malaria Programme Support</span>
+        <span class="skill-badge badge-blue">3D Printing</span>
+        <span class="skill-badge badge-blue">Statistical Reporting</span>
+      </div>
+    </div>
+
+    <!-- References -->
+    <div class="bg-blue-800 text-white shadow-lg" style="padding:12px; margin-top:8px; border-radius:8px;">
+      <h2 style="font-size:1rem; font-weight:700; margin-bottom:8px; text-align:center; color:#fff;">Referees</h2>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+        <div style="display:flex; align-items:flex-start;">
+          <i class="fas fa-user-circle" style="color:#93c5fd; font-size:0.75rem; margin-top:2px; margin-right:6px;"></i>
+          <div>
+            <p style="font-weight:700; font-size:0.75rem; color:#fff;">Mr. Stanley K. Ansumana</p>
+            <p style="font-size:0.7rem; color:#bfdbfe;">Surveillance M&E Officer</p>
+            <p style="font-size:0.7rem; color:#bfdbfe;">National Malaria Control Programme</p>
+            <a href="mailto:Stanleyansumana84@gmail.com" style="font-size:0.7rem; color:#bfdbfe; text-decoration:none;">Stanleyansumana84@gmail.com</a>
+            <p style="font-size:0.7rem; color:#bfdbfe;">+232 78 394350</p>
+          </div>
+        </div>
+        <div style="display:flex; align-items:flex-start;">
+          <i class="fas fa-user-circle" style="color:#93c5fd; font-size:0.75rem; margin-top:2px; margin-right:6px;"></i>
+          <div>
+            <p style="font-weight:700; font-size:0.75rem; color:#fff;">Mr. Mohamed Sylla Kanu</p>
+            <p style="font-size:0.7rem; color:#bfdbfe;">CEO, Informatics Consultancy Firm – SL</p>
+            <a href="mailto:sillahmohamedkanu@gmail.com" style="font-size:0.7rem; color:#bfdbfe; text-decoration:none;">sillahmohamedkanu@gmail.com</a>
+            <p style="font-size:0.7rem; color:#bfdbfe;">+232 76 194546</p>
+          </div>
+        </div>
+        <div style="display:flex; align-items:flex-start;">
+          <i class="fas fa-user-circle" style="color:#93c5fd; font-size:0.75rem; margin-top:2px; margin-right:6px;"></i>
+          <div>
+            <p style="font-weight:700; font-size:0.75rem; color:#fff;">Mr. Alhaji S. Kamara</p>
+            <p style="font-size:0.7rem; color:#bfdbfe;">Manager, Catholic Relief Service (CRS)</p>
+            <a href="mailto:alhaji.kamara@crs.org" style="font-size:0.7rem; color:#bfdbfe; text-decoration:none;">alhaji.kamara@crs.org</a>
+            <p style="font-size:0.7rem; color:#bfdbfe;">+232 99 852711</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
